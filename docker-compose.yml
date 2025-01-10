@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:7.6.1
@@ -47,7 +45,9 @@ services:
       retries: 10
 
   debezium:
-    image: debezium/custom-connect:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     restart: always
     container_name: debezium
     hostname: debezium
@@ -116,7 +116,7 @@ services:
       KAFKA_REST_LISTENERS: 'http://0.0.0.0:8082'
 
   postgres:
-    image: postgres:13
+    image: postgres:16
     restart: always
     container_name: postgres
     hostname: postgres
@@ -124,11 +124,11 @@ services:
       - '5432:5432'
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: shop_db
-    command: ['postgres', '-c', 'wal_level=logical']
+      POSTGRES_PASSWORD: 1
+      POSTGRES_DB: test_db
+    command: [ 'postgres', '-c', 'wal_level=logical' ]
     healthcheck:
-      test: ['CMD', 'psql', '-U', 'postgres', '-c', 'SELECT 1']
+      test: [ 'CMD', 'psql', '-U', 'postgres', '-c', 'SELECT 1' ]
       interval: 10s
       timeout: 5s
       retries: 5

@@ -1,4 +1,5 @@
-FROM debezium/connect:latest
+FROM debezium/connect:2.7.3.Final
+
 
 # Create a directory inside the container
 RUN mkdir -p /kafka/connect/debezium-avro-converter
