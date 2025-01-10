@@ -33,7 +33,7 @@ CREATE TABLE orders
 DO
 $$
 BEGIN
-FOR i IN 1..1000000 LOOP
+FOR i IN 1..20 LOOP
         INSERT INTO users (username, email, created_at)
         VALUES (
             CONCAT('user', i),
