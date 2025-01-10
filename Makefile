@@ -4,8 +4,8 @@ superset:
 	docker exec -it superset superset fab create-admin --username admin --firstname Admin --lastname Admin --email admin@localhost --password admin
 
 # create topic
-topic_postgres:
+topic:
 	curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" http://localhost:8083/connectors/ -d @debezium-postgresql-connector.json
 
-topic_status:
+status:
 	curl -s -X GET http://localhost:8083/connectors/pg-products-connector/status
