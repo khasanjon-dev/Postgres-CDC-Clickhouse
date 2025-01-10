@@ -23,14 +23,14 @@ CREATE TABLE kafka_postgres.products
     created_at UInt64
 ) ENGINE = Kafka
       SETTINGS kafka_broker_list = 'broker:29092',
-          kafka_topic_list = 'pg.public.users',
-          kafka_group_name = 'clickhouse_products',
+          kafka_topic_list = 'pg.public.products',
+          kafka_group_name = 'clickhouse',
           kafka_format = 'AvroConfluent',
           format_avro_schema_registry_url = 'http://schema-registry:8081';
 
 
 -- create  view
-CREATE MATERIALIZED VIEW kafka_postgres.consumer__products
+CREATE MATERIALIZED VIEW kafka_postgres.consumer_products
             TO postgres.products
             (
              id UInt32,
