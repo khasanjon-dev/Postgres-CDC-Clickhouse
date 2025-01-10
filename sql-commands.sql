@@ -60,7 +60,7 @@ END $$;
 DO
 $$
 BEGIN
-FOR i IN 1..1000000 LOOP
+FOR i IN 1..10000000 LOOP
         INSERT INTO orders (description, created_at)
         VALUES (
             CONCAT('Order description for order ', i),
@@ -118,9 +118,3 @@ FROM kafka_postgres.users;
 
 -- to'g'ridan to'g'ri ishlatib bo'midi insertni
 SET stream_like_engine_allow_direct_select = 1;
-
-
--- you need to insert exist data
-INSERT INTO postgres.users (id, username, email, created_at)
-SELECT generateUUIDv4(), username, email, toDateTime(created_at / 1000000)
-FROM kafka_postgres.users;
