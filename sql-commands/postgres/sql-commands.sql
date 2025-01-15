@@ -37,7 +37,7 @@ $$
 DO
 $$
     BEGIN
-        FOR i IN 1..1000000
+        FOR i IN 1..1000
             LOOP
                 INSERT INTO products (name, price, stock, created_at)
                 VALUES (CONCAT('product', i),
