@@ -1,0 +1,5 @@
+confluent-kafka
+avro-python3
+fastavro
+urllib3
+requests
